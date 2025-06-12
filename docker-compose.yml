@@ -28,14 +28,16 @@ services:
        - /var/lib/onlyoffice/documentserver/App_Data/cache/files
        - /var/www/onlyoffice/documentserver-example/public/files
        - /usr/share/fonts
-       
+    networks:
+      - onlyoffice
   onlyoffice-rabbitmq:
     container_name: onlyoffice-rabbitmq
     image: rabbitmq
     restart: always
     expose:
       - '5672'
-
+    networks:
+      - onlyoffice
   onlyoffice-postgresql:
     container_name: onlyoffice-postgresql
     image: postgres:12
@@ -48,6 +50,10 @@ services:
       - '5432'
     volumes:
       - postgresql_data:/var/lib/postgresql
-
+    networks:
+      - onlyoffice
 volumes:
   postgresql_data:
+networks:
+  onlyoffice:
+    driver: bridge
