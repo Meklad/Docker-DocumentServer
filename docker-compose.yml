@@ -14,7 +14,7 @@ services:
       - DB_USER=onlyoffice
       - AMQP_URI=amqp://guest:guest@onlyoffice-rabbitmq
       - JWT_ENABLED=true
-      - JWT_SECRET=secret
+      - 'JWT_SECRET=${JWT_SECRET_KEY}'
       - JWT_HEADER=Authorization
       - JWT_IN_BODY=true
     ports:
